@@ -24,9 +24,8 @@ $ go get github.com/flakaal/gepm
  - Faster api search
 
 ### Acknowledgement
- - <a href="https://github.com/spf13/cobra">cobra</a> by <a href="https://github.com/spf13">daviddengcn</a>
- - <a href="https://github.com/daviddengcn/gcse">gcse</a> by <a href="https://github.com/daviddengcn">daviddengcn</a>
- - <a href="https://github.com/briandowns/spinner">spinner</a> by <a href="https://github.com/briandowns">briandowns</a>
+ - <a href="https://github.com/daviddengcn/gcse">gcse</a> by <a href="https://github.com/daviddengcn">daviddengcn</a> for package search.
+ - <a href="https://github.com/briandowns/spinner">spinner</a> by <a href="https://github.com/briandowns">briandowns</a>  for loading spinners.
 
 License
 ----
