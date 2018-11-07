@@ -28,11 +28,10 @@ func getTSize() (int, int) {
 }
 
 func setTitle(row *bytes.Buffer) bytes.Buffer {
-	_ = "\u001b[1m\u001b[4m\u001b[7m string \u001b[0m"
 	name := "Name"
 	desc := "Description"
 	auth := "Author"
-	var c int = 0
+	var c int
 	nr := new(bytes.Buffer)
 	for _, r := range row.Bytes() {
 		if r == 32 {
@@ -66,7 +65,7 @@ func writeToBuffer(b *bytes.Buffer, str string) bytes.Buffer {
 }
 
 func writeToRow(b *bytes.Buffer, p Package) bytes.Buffer {
-	var c int = 0
+	var c int
 	for _, r := range b.Bytes() {
 		if r == 32 {
 			c++

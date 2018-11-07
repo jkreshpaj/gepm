@@ -1,72 +1,38 @@
 package cmd
 
 import (
-	"bufio"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
 	"os"
-	"strconv"
 
 	"github.com/spf13/cobra"
 )
 
-type Package struct {
-	Name        string `json:"name"`
-	Synopsis    string `json:"synopsis"`
-	Author      string `json:"author"`
-	Description string `json:"description"`
-	Package     string `json:"package"`
-	ProjectURL  string `json:"projecturl"`
-}
-
-type Packages struct {
-	Query string    `json:"query"`
-	Hits  []Package `json:"hits"`
-}
-
 var rootCmd = &cobra.Command{
-	Use:   "test",
-	Short: "TEST IS TEST",
-	Long:  "TEST TEST TEST IS TEST",
+	Use:   "gepm",
+	Short: "run gepm [arg] to search for packages or gepm to install packages from file",
 	Run: func(cmd *cobra.Command, args []string) {
-		res, err := http.Get("https://go-search.org/api?action=search&q=" + os.Args[1])
-		if err != nil {
-			log.Println("ERROR MAKING REQUEST")
+		if len(args) == 0 {
+			fmt.Println("Error: Unable to find packages.json on current directory")
 		}
-		pcks := new(Packages)
-		body, err := ioutil.ReadAll(res.Body)
-		if err != nil {
-			fmt.Println("ERROR READING BODY")
-		}
-		json.Unmarshal([]byte(body), &pcks)
-		for p := 0; p < len(pcks.Hits); p++ {
-			i := strconv.Itoa(p + 1)
-			pcks.Hits[p].Name = "[" + i + "] " + pcks.Hits[p].Name
-		}
-		fmt.Println("\u001b[1m\u001b[4m\u001b[7mSearch results for", os.Args[1], "\u001b[0m")
-		w, h := getTSize()
-		boxArr := drawBox(w, h)
-		for i, row := range boxArr {
-			if i > 1 && i < len(pcks.Hits) {
-				if i-2 < len(boxArr)-3 {
-					writeToRow(row, pcks.Hits[i-2])
-				}
-			} else if i == 1 {
-				*row = setTitle(row)
+
+		if len(args) > 0 {
+			done := make(chan bool)
+			s.Prefix = "Searching for " + args[0] + " "
+			s.Start()
+			go searchPackages(args[0], done)
+			<-done
+			s.Stop()
+			if len(packages.Hits) > 0 {
+				makePrompt()
 			}
-			fmt.Println(row.String())
+			if len(packages.Hits) == 0 {
+				fmt.Println("No packages named", args[0], "found")
+			}
 		}
-		fmt.Print("➡ Enter number of package to be installed: ")
-		input := bufio.NewScanner(os.Stdin)
-		input.Scan()
-		pn, _ := strconv.Atoi(input.Text())
-		fmt.Println("➡ Installing package", pcks.Hits[pn-1].Name, "from", pcks.Hits[pn-1].Package)
 	},
 }
 
+//Execute gemp
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)

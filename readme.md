@@ -8,7 +8,10 @@ GEPM is a terminal browser, installer and manager for go packages.
   - Install a package by just typing the number
   - All packages dependencies are saved in ```packages.json``` so you can clone and run your projects on new environments
 
-![](preview.gif)
+<p align="center">
+  <img src="preview.gif"/>
+</p>
+
 
 ### Installation
 
@@ -19,8 +22,8 @@ $ go get github.com/flakaal/gepm
 ### Todos
 
  - Faster api search
- - Add Night Mode
 
+###### API from go-search.org
 License
 ----
 
