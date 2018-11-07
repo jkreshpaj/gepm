@@ -78,12 +78,6 @@ func populateTable(pcks *Packages) {
 	}
 }
 
-func makeInstall(pcks *Packages, pn int, installed chan bool) {
-	cmd := exec.Command("go", "get", pcks.Hits[pn-1].Package)
-	cmd.Run()
-	installed <- true
-}
-
 func makePrompt() {
 	installed := make(chan bool)
 	fmt.Print("➡ Enter number of package to be installed: ")
@@ -96,4 +90,10 @@ func makePrompt() {
 	<-installed
 	p.Stop()
 	fmt.Println("➡ Successfully installed", packages.Hits[pn-1].Name)
+}
+
+func makeInstall(pcks *Packages, pn int, installed chan bool) {
+	cmd := exec.Command("go", "get", pcks.Hits[pn-1].Package)
+	cmd.Run()
+	installed <- true
 }
