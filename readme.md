@@ -2,7 +2,7 @@
 > Go Express Package Manager
 
 
-GEPM is a terminal browser, installed and manager for go packages.
+GEPM is a terminal browser, installer and manager for go packages.
 
   - Search for packages
   - Install a package by just typing the number
