@@ -82,3 +82,26 @@ func saveToFile(packages *Packages, packageNumber int) {
 		failed.Println("Error writing to packages.json")
 	}
 }
+
+func makeInstallFromFile() {
+	file, err := os.OpenFile("packages.json", os.O_RDONLY, 0600)
+	if err != nil && file == nil {
+		failed.Println("Unable to find packages.json on current directory")
+	} else {
+		packagesByte, err := ioutil.ReadFile("packages.json")
+		if err != nil {
+			failed.Println("Error reading packages.json")
+		}
+		var result map[string]interface{}
+		json.Unmarshal([]byte(packagesByte), &result)
+
+		for key := range result {
+			fmt.Println("➡ Installing package", key, "from", result[key])
+			url, _ := result[key].(string)
+			cmd := exec.Command("go", "get", url)
+			cmd.Run()
+			success.Println("➡ Successfully installed", key)
+		}
+	}
+	defer file.Close()
+}
