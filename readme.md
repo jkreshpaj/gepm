@@ -19,6 +19,19 @@ GEPM is a terminal browser, installer and manager for go packages.
 $ go get github.com/flakaal/gepm
 ```
 
+### Examples
+
+#### Search for package
+
+```bash
+$ gepm [package name]
+```
+
+Will return a list of all packages names, descriptions, authors matching ```[package name]``` . After typing the package number to install gepm will create a ```packages.json``` file on current directory which contains all the packages you installed with gepm.
+
+#### Install packages from file
+If you are cloning your code into another machine and dont have the required packages installed on it you can run ```gepm``` to install them from ```packages.json```
+
 ### Todos
 
  - Faster api search
