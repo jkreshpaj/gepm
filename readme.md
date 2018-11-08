@@ -22,8 +22,12 @@ $ go get github.com/flakaal/gepm
 ### Todos
 
  - Faster api search
+ - gepm run to just add package to file.json
 
-###### API from go-search.org
+### Acknowledgement
+ - <a href="https://github.com/daviddengcn/gcse">gcse</a> by <a href="https://github.com/daviddengcn">daviddengcn</a> for package search.
+ - <a href="https://github.com/briandowns/spinner">spinner</a> by <a href="https://github.com/briandowns">briandowns</a>  for loading spinners.
+
 License
 ----
 

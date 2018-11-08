@@ -1,7 +1,6 @@
 {
-  "packages": {
-    "cobra": "github.com/spf13/cobra",
-    "mux": "github.com/gorilla/mux",
-    "viper": "github.com/spf13/viper"
-  }
+	"cobra": "github.com/spf13/cobra",
+	"color": "github.com/fatih/color",
+	"mux": "github.com/gorilla/mux",
+	"spinner": "github.com/briandowns/spinner"
 }
