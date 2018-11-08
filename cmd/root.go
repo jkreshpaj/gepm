@@ -24,7 +24,7 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if len(args) == 0 {
-			failed.Println("Error: Unable to find packages.json on current directory")
+			makeInstallFromFile()
 		}
 
 		if len(args) > 0 {
