@@ -1,5 +1,6 @@
 {
 	"cobra": "github.com/spf13/cobra",
 	"color": "github.com/fatih/color",
-	"mux": "github.com/gorilla/mux"
+	"mux": "github.com/gorilla/mux",
+	"spinner": "github.com/briandowns/spinner"
 }
